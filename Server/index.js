@@ -50,7 +50,7 @@ app.get("/api/reviews", (req, res) => {
 });
 
 app.get("/api/bookInfos", (req, res) => {
-    const selectBookData = "SELECT * FROM book";
+    const selectBookData = "SELECT * FROM bookinfo";
    
     db.query(selectBookData, (err, results) => {
         if (err) {
