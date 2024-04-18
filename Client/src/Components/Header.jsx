@@ -14,9 +14,16 @@ export default function Navbar() {
             <a href="/">HOME</a>
           </li>
           <li className="abril-fatface-regular">
-            <a href="/" className="aboutus">
-              GENRES
-            </a>
+            
+          <div class="dropdown">
+  <button class="dropbtn">GENRES</button>
+  <div class="dropdown-content">
+    <a href="/">Coding</a>
+    <a href="/">Fiction</a>
+    <a href="/">Historical</a>
+  </div>
+</div>
+            
           </li>
           <li className="abril-fatface-regular">
             <a href="/">ABOUT</a>

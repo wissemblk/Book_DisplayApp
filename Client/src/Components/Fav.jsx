@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 import axios from "axios";
+import './FavHeart.css';
 
-export default function Favorite({ id }) {
+export default function Favorite({ id, userId }) {
   const [isFavorited, setIsFavorited] = useState(false);
 
   const addToFavorites = () => {
     axios
-      .post("http://localhost:5174/api/INSERT/FAV", { id })
+      .post("http://localhost:5174/api/INSERT/FAV", { idBook: id, idUser: userId })
       .then(() => {
         setIsFavorited(true);
         alert("Book added to favorites!");
@@ -17,12 +18,33 @@ export default function Favorite({ id }) {
       });
   };
 
+  const removeFromFavorites = () => {
+    axios
+      .delete("http://localhost:5174/api/DELETE/FAV", { data: { idBook: id, idUser: userId } })
+      .then(() => {
+        setIsFavorited(false);
+        alert("Book removed from favorites!");
+      })
+      .catch((error) => {
+        alert("An error occurred while removing the book from favorites");
+        console.error(error);
+      });
+  };
+
+  const handleToggleFavorite = () => {
+    if (isFavorited) {
+      removeFromFavorites();
+    } else {
+      addToFavorites();
+    }
+  };
+
   return (
     <>
       <div className="heart-box">
         <p className="add-favourite">Add to favourites</p>
         <label title="Add to Favourites" className="container">
-          <input type="checkbox" checked={isFavorited} onChange={addToFavorites} />
+          <input type="checkbox" checked={isFavorited} onChange={handleToggleFavorite} />
           <div className="checkmark">
             <svg viewBox="0 0 256 256">
               <rect fill="none" height="200" width="200"></rect>

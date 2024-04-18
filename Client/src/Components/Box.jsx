@@ -36,7 +36,7 @@ function Box({indexe}){
                     <div key={indexe}>
             <div className="bookSection">
 
-           <div><Favorite/></div>
+           <div><Favorite id={1} userId={12} /></div>
             
 
             <img src={book.Book_img} alt="book Image" />

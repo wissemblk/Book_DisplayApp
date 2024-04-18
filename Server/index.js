@@ -33,19 +33,32 @@ app.post("/api/insert", (req, res) => {
     });
 });
 
-app.post("api/INSERT/FAV",(req,res)=>{
-    const {idBook, idUser} = req.body;
+app.post("/api/INSERT/FAV", (req, res) => {
+    const { idBook, idUser } = req.body;
 
-    const addFav = "INSERT INTO `fika`.`favourite_book` (`Favourite_id`, `Book_id`, `User_id`) VALUES ('0',?,'12');";
-    db.query(addFav,[idBook,idUser],(err,result)=>{
+    const addFav = "INSERT INTO `fika`.`favourite_book` (`Favourite_id`, `Book_id`, `User_id`) VALUES ('0', ?, ?);";
+    db.query(addFav, [idBook, idUser], (err, result) => {
         if (err) {
-            console.error("Error inserting review:", err);
-            return res.status(500).json({ error: "Error inserting review" });
+            console.error("Error inserting favorite:", err);
+            return res.status(500).json({ error: "Error inserting favorite" });
         }
-        console.log("Review inserted successfully");
-        res.status(200).json({ message: "Review inserted successfully" });
-    })
-})
+        console.log("Favorite inserted successfully");
+        res.status(200).json({ message: "Favorite inserted successfully" });
+    });
+});
+
+app.delete("/api/DELETE/FAV", (req, res) => {
+    const { idBook, idUser } = req.body;
+    const removeFav = "DELETE FROM `favourite_book` WHERE `Book_id` = ? AND `User_id` = ?;";
+    db.query(removeFav, [idBook, idUser], (err, result) => {
+      if (err) {
+        console.error("Error removing favorite:", err);
+        return res.status(500).json({ error: "Error removing favorite" });
+      }
+      console.log("Favorite removed successfully");
+      res.status(200).json({ message: "Favorite removed successfully" });
+    });
+  });
 
 app.get("/api/reviews", (req, res) => {
     const query = `
