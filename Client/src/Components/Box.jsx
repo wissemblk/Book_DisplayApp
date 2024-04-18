@@ -48,7 +48,7 @@ function Box({indexe}){
             <div className="bookInfo">
                 
                         
-                        <div className="authorIMG"><img src={book.Author_img}  alt="Author image"/></div>
+                        <div className="authorIMG" alt="author image"><img src={book.Author_img}  alt="Author image"/></div>
                 
                 <ul>
                     <li > <h2>{book.BookTitle}</h2></li>
