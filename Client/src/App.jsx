@@ -1,5 +1,5 @@
 import React from 'react';
-import './App.css';
+import './Styles/App.css';
 import Box from './Components/Box.jsx';
 import Navbar from './Components/Header.jsx';
 import RateReview from './Components/RatingReview.jsx';

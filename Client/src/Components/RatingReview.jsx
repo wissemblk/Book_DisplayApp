@@ -1,7 +1,7 @@
 import { FaStar } from 'react-icons/fa';
 import React, { useState } from 'react';
 import axios from 'axios';
-import './Rating.css';
+import '../Styles/Rating.css';
 
 export default function RateReview({currentIdUser}) {
 

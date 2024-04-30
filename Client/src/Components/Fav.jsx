@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
-import './FavHeart.css';
+import '../Styles/FavHeart.css';
 
 export default function Favorite({ id, userId }) {
   const [isFavorited, setIsFavorited] = useState(false);

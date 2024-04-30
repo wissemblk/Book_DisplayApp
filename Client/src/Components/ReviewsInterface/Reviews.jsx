@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Review from './Review';
-import './Review.css';
+import '../../Styles/Review.css';
 
 export default function Reviews({ currentUserId }) {
     const [reviews, setReviews] = useState([]);
