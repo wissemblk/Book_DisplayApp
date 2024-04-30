@@ -3,11 +3,9 @@ import axios from 'axios';
 import Review from './Review';
 import './Review.css';
 
-
 export default function Reviews({ currentUserId }) {
     const [reviews, setReviews] = useState([]);
-    
-    
+
     const getReviews = () => {
         axios.get("http://localhost:5174/api/reviews")
             .then(response => {
@@ -18,18 +16,27 @@ export default function Reviews({ currentUserId }) {
             });
     };
 
+    const deleteReview = (reviewId) => {
+        axios.delete(`http://localhost:5174/api/reviews/${reviewId}`)
+            .then(() => {
+                setReviews(reviews.filter(review => review.idReview !== reviewId));
+            })
+            .catch(error => {
+                console.error('Error deleting review:', error);
+            });
+    };
+    
+
     useEffect(() => {
         getReviews();
-    }, []); 
+    }, []);
 
     return (
         <div className='Reviews'>
-           
             <div className='Reviews-container'>
-                {console.log(reviews)}
                 {reviews.length > 0 ? (
                     reviews.map(review => (
-                        <Review key={review.idReview} review={review} />
+                        <Review key={review.idReview} review={review} onDelete={deleteReview} />
                     ))
                 ) : (
                     <p>No reviews yet.</p>
@@ -37,6 +44,4 @@ export default function Reviews({ currentUserId }) {
             </div>
         </div>
     );
-    
-    
 }

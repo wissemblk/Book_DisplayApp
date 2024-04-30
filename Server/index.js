@@ -76,6 +76,23 @@ app.get("/api/reviews", (req, res) => {
     });
 });
 
+
+app.delete("/api/reviews/:idReview", (req, res) => {
+    const { idReview } = req.params;
+    const removeReview = "DELETE FROM `review` WHERE `idReview` = ?;";
+    db.query(removeReview, [idReview], (err, result) => {
+      if (err) {
+        console.error("Error removing your review:", err);
+        return res.status(500).json({ error: "Error removing review" });
+      }
+      console.log("Review removed successfully");
+      res.status(200).json({ message: "Review removed successfully" });
+    });
+  });
+
+
+
+
 app.get("/api/bookInfos", (req, res) => {
     const selectBookData = "SELECT * FROM bookinfo";
    
